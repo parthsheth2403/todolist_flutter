@@ -52,12 +52,12 @@ class MyApp extends StatelessWidget {
         '/register': (context) => RegisterScreen(),
         '/home': (context) => HomeScreen(),
       },
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      supportedLocales: [
-        const Locale('en', 'US'), // English
+      supportedLocales: const [
+        Locale('en', 'US'), // English
         // Add other supported locales here
       ],
     );
