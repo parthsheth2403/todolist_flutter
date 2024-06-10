@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "160659762574",
+    "project_id": "todo-list-57800",
+    "storage_bucket": "todo-list-57800.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:160659762574:android:74b8b830172fecc4f988df",
+        "android_client_info": {
+          "package_name": "com.parthsheth.todolistapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBM06RBZDtIvUEggBVhBM3BbF8OpG-YD5w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
