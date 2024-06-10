@@ -1,6 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../model/todo_model.dart';
 import '../services/firestore_service.dart';
 
@@ -9,7 +9,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final firestoreService = Provider.of<FirestoreService>(context);
 
     return Scaffold(
@@ -43,13 +42,15 @@ class HomeScreen extends StatelessWidget {
                       ),
                       IconButton(
                         icon: Icon(Icons.delete),
-                        onPressed: () => firestoreService.deleteToDo(todo.id),
+                        onPressed: () => firestoreService.deleteToDo(todo.id!),
                       ),
                     ],
                   ),
                   onTap: () => firestoreService.updateToDo(
+                    todo.id!,
                     ToDo(
                       id: todo.id,
+                      userId: todo.userId,
                       title: todo.title,
                       description: todo.description,
                       dueDate: todo.dueDate,
@@ -111,12 +112,13 @@ class HomeScreen extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: Text('Cancel'),
+            child: const Text('Cancel'),
           ),
           ElevatedButton(
             onPressed: () {
               final newTodo = ToDo(
-                id: todo?.id ?? '',
+                id: todo?.id,
+                userId: todo?.userId ?? FirebaseAuth.instance.currentUser!.uid,
                 title: _titleController.text,
                 description: _descriptionController.text,
                 dueDate: DateTime.parse(_dueDateController.text),
@@ -125,7 +127,7 @@ class HomeScreen extends StatelessWidget {
               if (todo == null) {
                 firestoreService.addToDo(newTodo);
               } else {
-                firestoreService.updateToDo(newTodo);
+                firestoreService.updateToDo(todo.id!, newTodo);
               }
               Navigator.of(context).pop();
             },
@@ -135,5 +137,4 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-
 }

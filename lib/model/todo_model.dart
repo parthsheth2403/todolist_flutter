@@ -1,13 +1,14 @@
-
 class ToDo {
-  String id;
+  String? id;
+  String userId;
   String title;
   String description;
   DateTime dueDate;
   bool isCompleted;
 
   ToDo({
-    required this.id,
+    this.id,
+    required this.userId,
     required this.title,
     required this.description,
     required this.dueDate,
@@ -16,6 +17,7 @@ class ToDo {
 
   Map<String, dynamic> toJson() {
     return {
+      'userId': userId,
       'title': title,
       'description': description,
       'dueDate': dueDate.toIso8601String(),
@@ -25,7 +27,8 @@ class ToDo {
 
   static ToDo fromJson(Map<String, dynamic> json) {
     return ToDo(
-      id: json['userId'],
+      id: json['id'],
+      userId: json['userId'],
       title: json['title'],
       description: json['description'],
       dueDate: DateTime.parse(json['dueDate']),
